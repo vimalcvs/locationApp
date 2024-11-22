@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.locationapp.ui.theme.LocationAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -27,24 +28,25 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val viewModel : LocationViewModel = viewModel()
             LocationAppTheme {
-                MyApp()
+                MyApp(viewModel)
             }
             }
         }
     }
 
 @Composable
-fun MyApp(){
+fun MyApp(viewModel: LocationViewModel){
     val context = LocalContext.current
     val permissionChecker = PermissionChecker(context)
-    FirstDisplay(context, viewmodel =  ,permissionChecker)
+    FirstDisplay(context, viewModel ,permissionChecker)
 }
 
 @Composable
 fun FirstDisplay(
     context : Context,
-    viewmodel: LocationViewmodel,
+    viewModel: LocationViewModel,
     permissionChecker: PermissionChecker) {
 
 
