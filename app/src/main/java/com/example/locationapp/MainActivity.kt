@@ -84,15 +84,18 @@ fun FirstDisplay(
         if (location != null){
 
             Text("Location address is ${location.Lattitude},${location.Longitude}")
+
+        }else{
+
+            Text("location not avaliable")
         }
 
-        Text("location not avaliable")
 
         Button(onClick = {
-            if(permissionChecker.Questionlocationpermission(context))
-            {
-                //permission avaliable , excute action to display location cordinates  on the ui
 
+            if(permissionChecker.Questionlocationpermission(context)) {
+                //permission avaliable , excute action to display location cordinates  on the ui
+                permissionChecker.requestlocationupdates(viewModel)
             }else{
                     //permission not avaliable,ask for permission launcher
 
