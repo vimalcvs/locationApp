@@ -49,6 +49,7 @@ fun FirstDisplay(
     viewModel: LocationViewModel,
     permissionChecker: PermissionChecker) {
 
+    val location = viewModel.location.value
 
     val requestpermissionlauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions(),
@@ -56,6 +57,7 @@ fun FirstDisplay(
                     if (permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true && permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true)
                     {
                         //as permission is granted fetch the location coordinates
+                       permissionChecker.requestlocationupdates(viewModel = viewModel)
                     }
                     else
                     {
@@ -78,6 +80,11 @@ fun FirstDisplay(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center)
     {
+
+        if (location != null){
+
+            Text("Location address is ${location.Lattitude},${location.Longitude}")
+        }
 
         Text("location not avaliable")
 
