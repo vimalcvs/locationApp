@@ -1,5 +1,6 @@
 package com.example.locationapp
 
 data class LocationData(
-    val Lattitude : Double,
-    val Longitude : Double)
+    val latitude: Double,
+    val longitude: Double
+)
